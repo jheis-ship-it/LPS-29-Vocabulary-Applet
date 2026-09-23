@@ -219,7 +219,7 @@ const questionBank = {
       },
       {
         type:"mc",
-        question:"A sentence is VAGUE if it:",
+        question:"A sentence is VAGUE if and only if it:",
         options:[
           "Can be interpreted in more than one grammatically correct way depending on word order.",
           "Makes a claim about the world that cannot in principle be empirically verified.",
@@ -278,7 +278,7 @@ const questionBank = {
         fullDef:"An ARGUMENT is a set of determinately true or false sentences with three elements: (1) one or more premises, which provide evidence or support; (2) one conclusion, which follows from or is supported by the premises; and (3) a claim about the connection between the premises and the conclusion."
       },
       {
-        prompt:"Fill in the blank: A sentence is VAGUE if ________",
+        prompt:"Fill in the blank: A sentence is VAGUE if and only if ________",
         fullDef:"A sentence is VAGUE if it has absolute borderline cases — that is, situations in which it is genuinely unclear whether the sentence is true or false."
       }
     ]
@@ -444,11 +444,11 @@ const questionBank = {
       },
       {
         prompt:"Fill in the blank: A kind of reasoning is MONOTONIC if ________",
-        fullDef:"A kind of reasoning is MONOTONIC if adding new premises will not make an argument that succeeds in providing the claimed support for its conclusion fail to do so."
+        fullDef:"A kind of reasoning is MONOTONIC if adding new premises will never weaken its claim."
       },
       {
         prompt:"Fill in the blank: A kind of reasoning is NON-MONOTONIC if ________",
-        fullDef:"A kind of reasoning is NON-MONOTONIC if adding new premises could make an argument that succeeds in providing the claimed support for its conclusion fail to do so."
+        fullDef:"A kind of reasoning is NON-MONOTONIC if adding new premises could weaken its claim."
       }
     ]
   },
@@ -895,15 +895,15 @@ const questionBank = {
       },
       {
         type:"mc",
-        question:"Which of the following is an example of a SUBFORMULA of the sentence \"(P ∧ Q) → R\"?",
+        question:"Which of the following is an example of a SUBFORMULA of the sentence \"(P & Q) → R\"?",
         options:[
           "Only \"R\" alone counts as a subformula, since it is the shortest component.",
-          "\"P ∧ Q\" is a subformula because it is a grammatically correct sentence within the larger one.",
-          "Both \"(P ∧ Q) → R\" itself and \"P ∧ Q\" are subformulas of \"(P ∧ Q) → R\".",
+          "\"(P & Q)\" is the only subformula because it is a grammatically correct sentence within the larger one.",
+          "Both \"(P & Q) → R\" itself and \"(P & Q)\" are subformulas of \"(P & Q) → R\", as are \"P\", \"Q\", and \"R\".",
           "There are no subformulas because a subformula must be shorter than two symbols in length."
         ],
         answer:2,
-        explanation:"Both \"(P ∧ Q) → R\" (the whole sentence) and \"P ∧ Q\" (a component) qualify as subformulas — a SUBFORMULA is any grammatically correct sentence that is part of another grammatically correct sentence, including the whole sentence itself."
+        explanation:"Both \"(P & Q) → R\" (the whole sentence) and \"(P & Q)\" (a component) qualify as subformulas, and so do every sentence letter in the sentence — a SUBFORMULA is any grammatically correct sentence that is part of another grammatically correct sentence, including the whole sentence itself."
       },
       {
         type:"fitb",
