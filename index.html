@@ -227,7 +227,7 @@ const questionBank = {
           "Is not directly relevant to the conclusion of the argument it appears in."
         ],
         answer:2,
-        explanation:"A sentence is VAGUE if it has absolute borderline cases — situations where it is genuinely unclear whether the sentence applies."
+        explanation:"A sentence is VAGUE if and only if it has absolute borderline cases — situations where it is genuinely unclear whether the sentence applies."
       },
       {
         type:"mc",
@@ -279,7 +279,7 @@ const questionBank = {
       },
       {
         prompt:"Fill in the blank: A sentence is VAGUE if and only if ________",
-        fullDef:"A sentence is VAGUE if it has absolute borderline cases — that is, situations in which it is genuinely unclear whether the sentence is true or false."
+        fullDef:"A sentence is VAGUE if and only if it has absolute borderline cases — that is, situations in which it is genuinely unclear whether the sentence is true or false."
       }
     ]
   },
@@ -320,7 +320,7 @@ const questionBank = {
           "It has high inductive probability based on available empirical evidence."
         ],
         answer:1,
-        explanation:"An argument is DEDUCTIVELY VALID if it has no counterexamples — no possible situation where all premises are true and the conclusion is false."
+        explanation:"An argument is DEDUCTIVELY VALID iff it has no counterexamples — no possible situation where all premises are true and the conclusion is false."
       },
       {
         type:"mc",
@@ -336,7 +336,7 @@ const questionBank = {
       },
       {
         type:"mc",
-        question:"An argument is SOUND if:",
+        question:"An argument is SOUND if and only if:",
         options:[
           "It has high inductive probability and each of its individual premises has been confirmed as true.",
           "Its premises are all true AND the argument is deductively valid.",
@@ -344,11 +344,11 @@ const questionBank = {
           "Its conclusion is supported by strong inductive reasoning and empirical evidence."
         ],
         answer:1,
-        explanation:"An argument is SOUND if its premises are all true AND it is deductively valid."
+        explanation:"An argument is SOUND iff its premises are all true AND it is deductively valid."
       },
       {
         type:"mc",
-        question:"An argument has HIGH INDUCTIVE PROBABILITY if:",
+        question:"An argument has HIGH INDUCTIVE PROBABILITY if and only if:",
         options:[
           "Every one of its premises has been independently confirmed as true.",
           "It has absolutely no counterexamples in any possible world or scenario.",
@@ -356,11 +356,11 @@ const questionBank = {
           "It is both deductively valid and all of its premises are known to be true."
         ],
         answer:2,
-        explanation:"An argument has HIGH INDUCTIVE PROBABILITY if the truth of the conclusion is very likely given the truth of the premises."
+        explanation:"An argument has HIGH INDUCTIVE PROBABILITY iff the truth of the conclusion is very likely given the truth of the premises."
       },
       {
         type:"mc",
-        question:"A kind of reasoning is MONOTONIC if:",
+        question:"A kind of reasoning is MONOTONIC if and only if:",
         options:[
           "Adding new premises to an argument could potentially cause it to fail to provide its claimed support for the conclusion.",
           "Adding new premises will NOT make an argument that succeeds in providing the claimed support for its conclusion fail to do so.",
@@ -368,11 +368,11 @@ const questionBank = {
           "The conclusion of the argument simply restates or summarizes one of the premises."
         ],
         answer:1,
-        explanation:"A kind of reasoning is MONOTONIC if adding new premises will never weaken its claim; adding new premises will NOT make an argument that succeeds in providing the claimed support for its conclusion fail to do so."
+        explanation:"A kind of reasoning is MONOTONIC iff adding new premises will never weaken its claim; adding new premises will NOT make an argument that succeeds in providing the claimed support for its conclusion fail to do so."
       },
       {
         type:"mc",
-        question:"A kind of reasoning is NON-MONOTONIC if:",
+        question:"A kind of reasoning is NON-MONOTONIC if and only if:",
         options:[
           "Adding new premises to the argument can never change or affect the argument's support for its conclusion.",
           "The argument contains no premises at all and relies solely on the conclusion itself.",
@@ -380,11 +380,11 @@ const questionBank = {
           "The argument relies exclusively on inductive logic and probabilistic reasoning throughout."
         ],
         answer:2,
-        explanation:"A kind of reasoning is NON-MONOTONIC if adding new premises could weaken its claim; adding new premises COULD make an argument that succeeds in providing its claimed support fail to do so."
+        explanation:"A kind of reasoning is NON-MONOTONIC iff adding new premises could weaken its claim; adding new premises COULD make an argument that succeeds in providing its claimed support fail to do so."
       },
       {
         type:"mc",
-        question:"An argument is DEDUCTIVELY INVALID if:",
+        question:"An argument is DEDUCTIVELY INVALID if and only if:",
         options:[
           "It contains no premises and relies only on the assertion of the conclusion.",
           "There is at least one counterexample — a possible situation where all premises are true and the conclusion is false.",
@@ -392,7 +392,7 @@ const questionBank = {
           "It uses inductive reasoning rather than deductive reasoning to reach its conclusion."
         ],
         answer:1,
-        explanation:"An argument is DEDUCTIVELY INVALID if there is at least one counterexample — a possible situation where all premises are true and the conclusion is false."
+        explanation:"An argument is DEDUCTIVELY INVALID iff there is at least one counterexample — a possible situation where all premises are true and the conclusion is false."
       },
       {
         type:"fitb",
@@ -402,19 +402,19 @@ const questionBank = {
       },
       {
         type:"fitb",
-        question:"An argument is ________ if its premises are true and it is deductively valid.",
+        question:"An argument is ________ if and only if its premises are true and it is deductively valid.",
         answers:["sound"],
-        explanation:"An argument is SOUND if its premises are all true AND it is deductively valid."
+        explanation:"An argument is SOUND if and only if its premises are all true AND it is deductively valid."
       },
       {
         type:"fitb",
-        question:"An argument is DEDUCTIVELY VALID if it has no ________.",
+        question:"An argument is DEDUCTIVELY VALID if and only if it has no ________.",
         answers:["counterexamples","counterexample"],
-        explanation:"An argument is DEDUCTIVELY VALID if there is no possible situation in which all premises are true and the conclusion is false."
+        explanation:"An argument is DEDUCTIVELY VALID if and only if there is no possible situation in which all premises are true and the conclusion is false."
       },
       {
         type:"fitb",
-        question:"A kind of reasoning is ________ if adding new premises could make an argument that succeeds in providing the claimed support for its conclusion fail to do so.",
+        question:"A kind of reasoning is ________ if and only if adding new premises could make an argument that succeeds in providing the claimed support for its conclusion fail to do so.",
         answers:["non-monotonic"],
         explanation:"NON-MONOTONIC reasoning can be undermined by the addition of new premises."
       },
@@ -435,20 +435,20 @@ const questionBank = {
         fullDef:"An INDUCTIVE ARGUMENT is an argument in which the premise(s) are not claimed to lend absolute support to the conclusion. Instead, the premises are claimed to make the conclusion probable or likely."
       },
       {
-        prompt:"Fill in the blank: An argument is DEDUCTIVELY VALID if ________",
-        fullDef:"An argument is DEDUCTIVELY VALID if it has no counterexamples — that is, no possible situation in which all of the premises are true and the conclusion is false."
+        prompt:"Fill in the blank: An argument is DEDUCTIVELY VALID if and only if ________",
+        fullDef:"An argument is DEDUCTIVELY VALID iff it has no counterexamples — that is, no possible situation in which all of the premises are true and the conclusion is false."
       },
       {
-        prompt:"Fill in the blank: An argument is SOUND if ________",
-        fullDef:"An argument is SOUND if its premises are all true and it is deductively valid."
+        prompt:"Fill in the blank: An argument is SOUND if and only if ________",
+        fullDef:"An argument is SOUND iff its premises are all true and it is deductively valid."
       },
       {
-        prompt:"Fill in the blank: A kind of reasoning is MONOTONIC if ________",
-        fullDef:"A kind of reasoning is MONOTONIC if adding new premises will never weaken its claim."
+        prompt:"Fill in the blank: A kind of reasoning is MONOTONIC if and only if ________",
+        fullDef:"A kind of reasoning is MONOTONIC iff adding new premises will never weaken its claim."
       },
       {
-        prompt:"Fill in the blank: A kind of reasoning is NON-MONOTONIC if ________",
-        fullDef:"A kind of reasoning is NON-MONOTONIC if adding new premises could weaken its claim."
+        prompt:"Fill in the blank: A kind of reasoning is NON-MONOTONIC if and only if ________",
+        fullDef:"A kind of reasoning is NON-MONOTONIC iff adding new premises could weaken its claim."
       }
     ]
   },
@@ -469,7 +469,7 @@ const questionBank = {
       },
       {
         type:"mc",
-        question:"A person commits a FALLACY OF RELEVANCE if:",
+        question:"A person commits a FALLACY OF RELEVANCE iff:",
         options:[
           "She uses ambiguous or vague language in her premises in order to mislead her audience.",
           "She claims her premises provide absolute support for the conclusion when in fact they do not provide absolute support.",
@@ -493,7 +493,7 @@ const questionBank = {
       },
       {
         type:"mc",
-        question:"A person commits a DEDUCTIVE FALLACY if:",
+        question:"A person commits a DEDUCTIVE FALLACY iff:",
         options:[
           "She uses inductive-style reasoning in a context that strictly requires deductive certainty.",
           "She claims her premises would make the conclusion merely probable when in fact they provide absolute deductive support.",
@@ -505,7 +505,7 @@ const questionBank = {
       },
       {
         type:"mc",
-        question:"A person commits an INDUCTIVE FALLACY if:",
+        question:"A person commits an INDUCTIVE FALLACY iff:",
         options:[
           "She claims her premises provide absolute deductive support when they only make the conclusion somewhat likely.",
           "She claims her premises provide a certain degree of inductive support when they actually provide only a significantly weaker degree of support.",
@@ -523,7 +523,7 @@ const questionBank = {
       },
       {
         type:"fitb",
-        question:"A person commits a ________ FALLACY if her argument relies on words or phrases with ambiguous or vague meanings.",
+        question:"A person commits a ________ FALLACY iff her argument relies on words or phrases with ambiguous or vague meanings.",
         answers:["semantic"],
         explanation:"A SEMANTIC FALLACY exploits ambiguous or vague language."
       },
@@ -535,7 +535,7 @@ const questionBank = {
       },
       {
         type:"fitb",
-        question:"A person commits a DEDUCTIVE FALLACY if she claims that her premises would provide ________ support for the conclusion when in fact they would not.",
+        question:"A person commits a DEDUCTIVE FALLACY iff she claims that her premises would provide ________ support for the conclusion when in fact they would not.",
         answers:["absolute"],
         explanation:"A DEDUCTIVE FALLACY involves falsely claiming that the premises provide absolute support for the conclusion."
       }
@@ -546,20 +546,20 @@ const questionBank = {
         fullDef:"A FALLACY is a faulty argument or a faulty kind of argument."
       },
       {
-        prompt:"Fill in the blank: A person commits a FALLACY OF RELEVANCE if ________",
-        fullDef:"A person commits a FALLACY OF RELEVANCE if she supports her conclusion with premises that are not relevant to the truth of the conclusion."
+        prompt:"Fill in the blank: A person commits a FALLACY OF RELEVANCE iff ________",
+        fullDef:"A person commits a FALLACY OF RELEVANCE iff she supports her conclusion with premises that are not relevant to the truth of the conclusion."
       },
       {
-        prompt:"Fill in the blank: A person commits a SEMANTIC FALLACY if ________",
-        fullDef:"A person commits a SEMANTIC FALLACY if her argument relies on words or phrases with ambiguous or vague meanings."
+        prompt:"Fill in the blank: A person commits a SEMANTIC FALLACY iff ________",
+        fullDef:"A person commits a SEMANTIC FALLACY iff her argument relies on words or phrases with ambiguous or vague meanings."
       },
       {
-        prompt:"Fill in the blank: A person commits a DEDUCTIVE FALLACY if ________",
-        fullDef:"A person commits a DEDUCTIVE FALLACY if she claims that the truth of her premises would provide absolute support for the truth of the conclusion when in fact the truth of the premises would not provide absolute support."
+        prompt:"Fill in the blank: A person commits a DEDUCTIVE FALLACY iff ________",
+        fullDef:"A person commits a DEDUCTIVE FALLACY iff she claims that the truth of her premises would provide absolute support for the truth of the conclusion when in fact the truth of the premises would not provide absolute support."
       },
       {
-        prompt:"Fill in the blank: A person commits an INDUCTIVE FALLACY if ________",
-        fullDef:"A person commits an INDUCTIVE FALLACY if she claims that the truth of her premises would provide a certain degree of support for the truth of the conclusion when in fact the truth of the premises would only provide some significantly weaker degree of support."
+        prompt:"Fill in the blank: A person commits an INDUCTIVE FALLACY iff ________",
+        fullDef:"A person commits an INDUCTIVE FALLACY iff she claims that the truth of her premises would provide a certain degree of support for the truth of the conclusion when in fact the truth of the premises would only provide some significantly weaker degree of support."
       }
     ]
   },
@@ -859,7 +859,7 @@ const questionBank = {
     graded: [
       {
         type:"mc",
-        question:"Two statement forms are LOGICALLY EQUIVALENT if:",
+        question:"Two statement forms are LOGICALLY EQUIVALENT iff:",
         options:[
           "They contain exactly the same number of propositional variables and connectives.",
           "Their truth-values agree for all instances — their truth tables agree in every single row.",
@@ -867,7 +867,7 @@ const questionBank = {
           "They are both tautologies that are always true regardless of any truth value assignments."
         ],
         answer:1,
-        explanation:"Two statement forms are LOGICALLY EQUIVALENT if their truth-values agree for all instances — their truth tables agree in every row."
+        explanation:"Two statement forms are LOGICALLY EQUIVALENT iff their truth-values agree for all instances — their truth tables agree in every row."
       },
       {
         type:"mc",
@@ -883,7 +883,7 @@ const questionBank = {
       },
       {
         type:"mc",
-        question:"Which of the following must be true if two statement forms are LOGICALLY EQUIVALENT?",
+        question:"Which of the following must be true iff two statement forms are LOGICALLY EQUIVALENT?",
         options:[
           "Both of the statement forms must themselves be tautologies.",
           "The two statement forms must share all of the same sentential operators.",
@@ -891,7 +891,7 @@ const questionBank = {
           "One of the statement forms must be a subformula of the other statement form."
         ],
         answer:2,
-        explanation:"Two statement forms are logically equivalent if their truth tables agree in every row — they always have the same truth value for every possible assignment."
+        explanation:"Two statement forms are logically equivalent iff their truth tables agree in every row — they always have the same truth value for every possible assignment."
       },
       {
         type:"mc",
@@ -907,9 +907,9 @@ const questionBank = {
       },
       {
         type:"fitb",
-        question:"Two statement forms are LOGICALLY ________ if their truth tables agree in every row.",
+        question:"Two statement forms are LOGICALLY ________ iff their truth tables agree in every row.",
         answers:["equivalent"],
-        explanation:"Two statement forms are LOGICALLY EQUIVALENT if their truth-values agree for all instances."
+        explanation:"Two statement forms are LOGICALLY EQUIVALENT iff their truth-values agree for all instances."
       },
       {
         type:"fitb",
@@ -920,8 +920,8 @@ const questionBank = {
     ],
     selfCheck: [
       {
-        prompt:"Fill in the blank: Two statement forms are LOGICALLY EQUIVALENT if ________",
-        fullDef:"Two statement forms are LOGICALLY EQUIVALENT if their truth-values agree for all instances; that is, their truth tables agree in every row."
+        prompt:"Fill in the blank: Two statement forms are LOGICALLY EQUIVALENT iff ________",
+        fullDef:"Two statement forms are LOGICALLY EQUIVALENT iff their truth-values agree for all instances; that is, their truth tables agree in every row."
       },
       {
         prompt:"Fill in the blank: A SUBFORMULA is ________",
