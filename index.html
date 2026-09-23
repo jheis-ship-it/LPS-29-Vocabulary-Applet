@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LPS 29 Critical Reasoning Quiz</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 30px 20px;
+  }
+  .container {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 780px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+  .header { text-align: center; margin-bottom: 30px; }
+  .header h1 { font-size: 2rem; color: #0f3460; margin-bottom: 8px; }
+  .header p { color: #666; font-size: 1rem; }
+
+  .menu-section { text-align: center; }
+  .menu-section h2 { font-size: 1.3rem; color: #333; margin-bottom: 20px; }
+
+  select {
+    width: 100%; padding: 14px 18px; font-size: 1rem;
+    border: 2px solid #ddd; border-radius: 10px; color: #333;
+    background: white; cursor: pointer; outline: none; margin-bottom: 20px;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 16px center;
+  }
+  select:focus { border-color: #0f3460; }
+
+  .btn {
+    padding: 13px 32px; font-size: 1rem; border: none;
+    border-radius: 50px; cursor: pointer; font-weight: 600;
+    transition: all 0.2s; margin: 6px;
+  }
+  .btn-primary { background: linear-gradient(135deg, #0f3460, #533483); color: white; }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(15,52,96,0.4); }
+  .btn-danger { background: linear-gradient(135deg, #e94560, #c62a47); color: white; }
+  .btn-danger:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(233,69,96,0.4); }
+  .btn-success { background: linear-gradient(135deg, #0f9b8e, #0f7a6d); color: white; }
+  .btn-success:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(15,155,142,0.4); }
+  .btn-warning { background: linear-gradient(135deg, #f39c12, #d68910); color: white; }
+  .btn-warning:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(243,156,18,0.4); }
+  .btn:disabled { opacity: 0.5; cursor: default; transform: none !important; box-shadow: none !important; }
+
+  .phase-banner {
+    text-align: center; padding: 8px 16px; border-radius: 8px;
+    font-size: 0.85rem; font-weight: 600; margin-bottom: 14px;
+    letter-spacing: 0.04em; text-transform: uppercase;
+  }
+  .phase-graded { background: #e8ecff; color: #0f3460; }
+  .phase-selfcheck { background: #fff8e1; color: #b7770d; }
+
+  .progress-bar-container { background: #e0e0e0; border-radius: 50px; height: 10px; margin-bottom: 8px; overflow: hidden; }
+  .progress-bar { height: 100%; border-radius: 50px; transition: width 0.4s ease; }
+  .progress-bar.graded { background: linear-gradient(90deg, #0f3460, #533483); }
+  .progress-bar.selfcheck { background: linear-gradient(90deg, #f39c12, #d68910); }
+  .progress-text { text-align: right; font-size: 0.85rem; color: #888; margin-bottom: 20px; }
+
+  .question-card { background: #f8f9ff; border-radius: 16px; padding: 28px; margin-bottom: 20px; border: 2px solid #e8ecff; }
+  .question-card.selfcheck-card { background: #fffdf0; border-color: #f9e4a0; }
+  .badge {
+    display: inline-block; color: white;
+    font-size: 0.75rem; font-weight: 600; padding: 4px 12px;
+    border-radius: 50px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 14px;
+  }
+  .badge-mc { background: #0f3460; }
+  .badge-fitb { background: #533483; }
+  .badge-selfcheck { background: #b7770d; }
+  .question-text { font-size: 1.08rem; color: #222; line-height: 1.6; margin-bottom: 20px; font-weight: 500; }
+
+  .options-list { list-style: none; }
+  .options-list li { margin-bottom: 10px; }
+  .option-btn {
+    width: 100%; text-align: left; padding: 13px 18px;
+    background: white; border: 2px solid #dde1f0; border-radius: 10px;
+    font-size: 0.97rem; color: #333; cursor: pointer; transition: all 0.2s; line-height: 1.5;
+  }
+  .option-btn:hover:not(:disabled) { border-color: #0f3460; background: #f0f3ff; }
+  .option-btn.correct { background: #e6f9f0; border-color: #27ae60; color: #1a7a42; font-weight: 600; }
+  .option-btn.incorrect { background: #fdecea; border-color: #e74c3c; color: #c0392b; }
+  .option-btn.reveal { background: #e6f9f0; border-color: #27ae60; color: #1a7a42; font-weight: 600; }
+
+  .fitb-input {
+    width: 100%; padding: 13px 16px; border: 2px solid #dde1f0;
+    border-radius: 10px; font-size: 1rem; color: #333; outline: none;
+    transition: border-color 0.2s; margin-bottom: 12px;
+  }
+  .fitb-input:focus { border-color: #0f3460; }
+  .fitb-input.correct { border-color: #27ae60; background: #e6f9f0; color: #1a7a42; }
+  .fitb-input.incorrect { border-color: #e74c3c; background: #fdecea; color: #c0392b; }
+
+  .selfcheck-textarea {
+    width: 100%; padding: 13px 16px; border: 2px solid #e8d87a;
+    border-radius: 10px; font-size: 1rem; color: #333; outline: none;
+    transition: border-color 0.2s; margin-bottom: 12px;
+    min-height: 90px; resize: vertical; font-family: inherit;
+    background: #fffef5;
+  }
+  .selfcheck-textarea:focus { border-color: #b7770d; }
+
+  .feedback {
+    margin-top: 16px; padding: 14px 18px; border-radius: 10px;
+    font-size: 0.95rem; line-height: 1.6; display: none;
+  }
+  .feedback.show { display: block; }
+  .feedback.correct { background: #e6f9f0; border: 1px solid #27ae60; color: #1a7a42; }
+  .feedback.incorrect { background: #fdecea; border: 1px solid #e74c3c; color: #c0392b; }
+  .feedback.selfcheck-fb { background: #fff8e1; border: 1px solid #f0c030; color: #7a5c00; }
+
+  .nav-row { text-align: right; margin-top: 10px; }
+
+  .results-card { text-align: center; padding: 20px 10px; }
+  .results-card .trophy { font-size: 4rem; margin-bottom: 16px; }
+  .results-card h2 { font-size: 1.8rem; color: #0f3460; margin-bottom: 8px; }
+  .score-display { font-size: 3.5rem; font-weight: 700; color: #533483; margin: 16px 0; }
+  .score-pct { font-size: 1.1rem; color: #666; margin-bottom: 20px; }
+  .results-msg {
+    font-size: 1rem; color: #444; background: #f0f3ff;
+    padding: 14px 20px; border-radius: 10px; margin-bottom: 16px; line-height: 1.6;
+  }
+  .missed-msg {
+    font-size: 0.97rem; color: #7a3000; background: #fff3e0;
+    padding: 12px 18px; border-radius: 10px; margin-bottom: 20px; line-height: 1.6;
+    border: 1px solid #f0a060;
+  }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>🎓 Critical Reasoning Quiz</h1>
+    <p>LPS 29 — Test your knowledge of key definitions before your exam!</p>
+  </div>
+
+  <!-- MENU -->
+  <div id="menu-section" class="menu-section">
+    <h2>Select a Quiz</h2>
+    <select id="quiz-select">
+      <option value="" disabled selected>-- Choose a quiz --</option>
+      <option value="week1">Week 1 (chapter 1)</option>
+      <option value="week2">Week 2 (chapter 2)</option>
+      <option value="week3">Week 3 (chapter 3)</option>
+      <option value="unit1">Weeks 1–3 (Unit 1 exam)</option>
+      <option value="week4">Week 4 (chapter 3, part 1)</option>
+      <option value="week5">Week 5 (chapter 3, part 2)</option>
+      <option value="week6">Week 6 (chapter 3, part 3)</option>
+      <option value="unit2">Weeks 4–6 (Unit 2 exam)</option>
+      <option value="week7">Week 7 (chapter 4, part 1)</option>
+      <option value="week8">Week 8 (chapter 4, part 2)</option>
+      <option value="weeks910">Weeks 9–10 (chapter 4, parts 3–4)</option>
+      <option value="final">Weeks 7–10 (Final exam)</option>
+    </select>
+    <br>
+    <button class="btn btn-primary" onclick="startQuiz()">Start Quiz ▶</button>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz-section" class="hidden">
+    <div id="phase-banner" class="phase-banner phase-graded">Graded Questions</div>
+    <div class="progress-bar-container">
+      <div class="progress-bar graded" id="progress-bar" style="width:0%"></div>
+    </div>
+    <div class="progress-text" id="progress-text"></div>
+    <div class="question-card" id="question-card"></div>
+    <div class="nav-row">
+      <button class="btn btn-primary" id="next-btn" style="display:none" onclick="nextQuestion()">Next →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results-section" class="hidden">
+    <div class="results-card">
+      <div class="trophy" id="trophy">🏆</div>
+      <h2>Quiz Complete!</h2>
+      <div class="score-display" id="score-display"></div>
+      <div class="score-pct" id="score-pct"></div>
+      <div class="results-msg" id="results-msg"></div>
+      <div class="missed-msg hidden" id="missed-msg"></div>
+      <button class="btn btn-warning hidden" id="redo-missed-btn" onclick="redoMissed()">🔁 Redo Missed Questions</button>
+      <button class="btn btn-danger" onclick="retryQuiz()">🔄 Restart Full Quiz</button>
+      <button class="btn btn-success" onclick="goToMenu()">🏠 Back to Menu</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// QUESTION BANK  (graded + selfCheck per week)
+// ============================================================
+const questionBank = {
+
+  week1: {
+    graded: [
+      {
+        type:"mc",
+        question:"Which of the following best defines an ARGUMENT in critical reasoning?",
+        options:[
+          "A heated verbal exchange between two or more people who hold opposing views and each tries to persuade the other.",
+          "A set of determinately true or false sentences with premises, a conclusion, and a claim about the connection between them.",
+          "Any declarative statement that makes a factual claim about the external world.",
+          "A logical puzzle or thought experiment that is designed to have no single definitive answer."
+        ],
+        answer:1,
+        explanation:"An ARGUMENT is a set of determinately true or false sentences with three elements: one or more premises (evidence/support), one conclusion, and a claim about the connection between them."
+      },
+      {
+        type:"mc",
+        question:"A sentence is VAGUE if it:",
+        options:[
+          "Can be interpreted in more than one grammatically correct way depending on word order.",
+          "Makes a claim about the world that cannot in principle be empirically verified.",
+          "Has absolute borderline cases — situations where it is genuinely unclear whether the sentence applies.",
+          "Is not directly relevant to the conclusion of the argument it appears in."
+        ],
+        answer:2,
+        explanation:"A sentence is VAGUE if it has absolute borderline cases — situations where it is genuinely unclear whether the sentence applies."
+      },
+      {
+        type:"mc",
+        question:"Which of the following is NOT one of the three elements of an argument?",
+        options:[
+          "One or more premises that provide evidence or support for the conclusion.",
+          "One conclusion that follows from or is supported by the premises.",
+          "A claim about the connection between the premises and the conclusion.",
+          "A counterexample that could potentially disprove or undermine the conclusion."
+        ],
+        answer:3,
+        explanation:"The three elements are: (1) premises, (2) one conclusion, and (3) a claim about their connection. A counterexample is not part of the definition of an argument."
+      },
+      {
+        type:"mc",
+        question:"Which of the following is the best example of a VAGUE sentence?",
+        options:[
+          "The number 7 is an odd number and therefore not divisible by 2.",
+          "All bachelors are by definition unmarried adult males.",
+          "John is tall.",
+          "Water reaches its boiling point at exactly 100 degrees Celsius at standard sea-level pressure."
+        ],
+        answer:2,
+        explanation:"\"John is tall\" is vague because there is no sharp cutoff for what counts as 'tall' — there are absolute borderline cases where it is genuinely unclear whether the word applies."
+      },
+      {
+        type:"fitb",
+        question:"An ARGUMENT has three elements: one or more ________, one conclusion, and a claim about the connection between the premises and the conclusion.",
+        answers:["premises","premise"],
+        explanation:"The three elements are: (1) one or more premises (evidence/support), (2) one conclusion, and (3) a claim about the connection between them."
+      },
+      {
+        type:"fitb",
+        question:"A sentence is ________ if it has absolute borderline cases.",
+        answers:["vague"],
+        explanation:"A sentence is VAGUE if it has absolute borderline cases — situations where it is genuinely unclear whether the sentence is true or false."
+      },
+      {
+        type:"fitb",
+        question:"An argument contains one or more premises, one ________, and a claim about the connection between them.",
+        answers:["conclusion"],
+        explanation:"The three elements of an argument are: premises, one conclusion, and a claim about their connection."
+      }
+    ],
+    selfCheck: [
+      {
+        prompt:"Fill in the blank: An ARGUMENT is ________",
+        fullDef:"An ARGUMENT is a set of determinately true or false sentences with three elements: (1) one or more premises, which provide evidence or support; (2) one conclusion, which follows from or is supported by the premises; and (3) a claim about the connection between the premises and the conclusion."
+      },
+      {
+        prompt:"Fill in the blank: A sentence is VAGUE if ________",
+        fullDef:"A sentence is VAGUE if it has absolute borderline cases — that is, situations in which it is genuinely unclear whether the sentence is true or false."
+      }
+    ]
+  },
+
+  week2: {
+    graded: [
+      {
+        type:"mc",
+        question:"What is a DEDUCTIVE ARGUMENT?",
+        options:[
+          "An argument in which the premises are claimed to make the conclusion probable or likely, but not certain.",
+          "An argument in which the premise(s) are claimed to lend absolute support to the conclusion.",
+          "An argument that has been independently verified to be both valid and sound.",
+          "An argument that contains at least two premises and whose conclusion has been confirmed as true."
+        ],
+        answer:1,
+        explanation:"A DEDUCTIVE ARGUMENT is one in which the premise(s) are claimed to lend absolute support to the conclusion."
+      },
+      {
+        type:"mc",
+        question:"What is an INDUCTIVE ARGUMENT?",
+        options:[
+          "An argument whose conclusion is guaranteed to be true if the premises are true.",
+          "An argument in which the premises are claimed to lend absolute and certain support to the conclusion.",
+          "An argument in which the premises are claimed to make the conclusion probable or likely, but not absolutely certain.",
+          "An argument that relies on formal rules of inference to derive its conclusion step by step."
+        ],
+        answer:2,
+        explanation:"An INDUCTIVE ARGUMENT is one in which the premises do not claim absolute support; instead, they are claimed to make the conclusion probable or likely."
+      },
+      {
+        type:"mc",
+        question:"An argument is DEDUCTIVELY VALID if and only if:",
+        options:[
+          "All of its premises have been independently verified to be true.",
+          "It has no counterexamples — no possible situation where all premises are true and the conclusion false.",
+          "Its conclusion is a statement that is necessarily true in all possible worlds.",
+          "It has high inductive probability based on available empirical evidence."
+        ],
+        answer:1,
+        explanation:"An argument is DEDUCTIVELY VALID if it has no counterexamples — no possible situation where all premises are true and the conclusion is false."
+      },
+      {
+        type:"mc",
+        question:"What is a COUNTEREXAMPLE to an argument?",
+        options:[
+          "A premise within the argument that directly contradicts or conflicts with another premise.",
+          "A logical rule or principle that is strong enough to defeat the argument entirely.",
+          "A possible situation in which all of the premises are true and the conclusion is false.",
+          "A supporting example that helps confirm or strengthen the argument's conclusion."
+        ],
+        answer:2,
+        explanation:"A COUNTEREXAMPLE to an argument is a possible situation (or possible world) in which all of the premises are true and the conclusion is false."
+      },
+      {
+        type:"mc",
+        question:"An argument is SOUND if:",
+        options:[
+          "It has high inductive probability and each of its individual premises has been confirmed as true.",
+          "Its premises are all true AND the argument is deductively valid.",
+          "It has no counterexamples and its conclusion is considered probable rather than certain.",
+          "Its conclusion is supported by strong inductive reasoning and empirical evidence."
+        ],
+        answer:1,
+        explanation:"An argument is SOUND if its premises are all true AND it is deductively valid."
+      },
+      {
+        type:"mc",
+        question:"An argument has HIGH INDUCTIVE PROBABILITY if:",
+        options:[
+          "Every one of its premises has been independently confirmed as true.",
+          "It has absolutely no counterexamples in any possible world or scenario.",
+          "The truth of the conclusion is very likely given the truth of the premises.",
+          "It is both deductively valid and all of its premises are known to be true."
+        ],
+        answer:2,
+        explanation:"An argument has HIGH INDUCTIVE PROBABILITY if the truth of the conclusion is very likely given the truth of the premises."
+      },
+      {
+        type:"mc",
+        question:"A kind of reasoning is MONOTONIC if:",
+        options:[
+          "Adding new premises to an argument could potentially cause it to fail to provide its claimed support for the conclusion.",
+          "Adding new premises will NOT make an argument that succeeds in providing the claimed support for its conclusion fail to do so.",
+          "The argument relies on a single premise to establish the truth of its conclusion.",
+          "The conclusion of the argument simply restates or summarizes one of the premises."
+        ],
+        answer:1,
+        explanation:"A kind of reasoning is MONOTONIC if adding new premises will NOT make an argument that succeeds in providing the claimed support for its conclusion fail to do so."
+      },
+      {
+        type:"mc",
+        question:"A kind of reasoning is NON-MONOTONIC if:",
+        options:[
+          "Adding new premises to the argument can never change or affect the argument's support for its conclusion.",
+          "The argument contains no premises at all and relies solely on the conclusion itself.",
+          "Adding new premises COULD make an argument that succeeds in providing the claimed support for its conclusion fail to do so.",
+          "The argument relies exclusively on inductive logic and probabilistic reasoning throughout."
+        ],
+        answer:2,
+        explanation:"A kind of reasoning is NON-MONOTONIC if adding new premises COULD make an argument that succeeds in providing its claimed support fail to do so."
+      },
+      {
+        type:"mc",
+        question:"An argument is DEDUCTIVELY INVALID if:",
+        options:[
+          "It contains no premises and relies only on the assertion of the conclusion.",
+          "There is at least one counterexample — a possible situation where all premises are true and the conclusion is false.",
+          "Each of its premises has been shown to be false through empirical investigation.",
+          "It uses inductive reasoning rather than deductive reasoning to reach its conclusion."
+        ],
+        answer:1,
+        explanation:"An argument is DEDUCTIVELY INVALID if there is at least one counterexample — a possible situation where all premises are true and the conclusion is false."
+      },
+      {
+        type:"fitb",
+        question:"A DEDUCTIVE ARGUMENT is an argument in which the premise(s) are claimed to lend ________ support to the conclusion.",
+        answers:["absolute"],
+        explanation:"A DEDUCTIVE ARGUMENT claims to provide absolute (certain) support for its conclusion."
+      },
+      {
+        type:"fitb",
+        question:"An argument is ________ if its premises are true and it is deductively valid.",
+        answers:["sound"],
+        explanation:"An argument is SOUND if its premises are all true AND it is deductively valid."
+      },
+      {
+        type:"fitb",
+        question:"An argument is DEDUCTIVELY VALID if it has no ________.",
+        answers:["counterexamples","counterexample"],
+        explanation:"An argument is DEDUCTIVELY VALID if there is no possible situation in which all premises are true and the conclusion is false."
+      },
+      {
+        type:"fitb",
+        question:"A kind of reasoning is ________ if adding new premises could make an argument that succeeds in providing the claimed support for its conclusion fail to do so.",
+        answers:["non-monotonic"],
+        explanation:"NON-MONOTONIC reasoning can be undermined by the addition of new premises."
+      },
+      {
+        type:"fitb",
+        question:"An INDUCTIVE ARGUMENT claims its premises make the conclusion ________ or likely, rather than absolutely certain.",
+        answers:["probable","likely"],
+        explanation:"An INDUCTIVE ARGUMENT claims its premises make the conclusion probable or likely — not absolutely certain."
+      }
+    ],
+    selfCheck: [
+      {
+        prompt:"Fill in the blank: A DEDUCTIVE ARGUMENT is ________",
+        fullDef:"A DEDUCTIVE ARGUMENT is an argument in which the premise(s) are claimed to lend absolute support to the conclusion."
+      },
+      {
+        prompt:"Fill in the blank: An INDUCTIVE ARGUMENT is ________",
+        fullDef:"An INDUCTIVE ARGUMENT is an argument in which the premise(s) are not claimed to lend absolute support to the conclusion. Instead, the premises are claimed to make the conclusion probable or likely."
+      },
+      {
+        prompt:"Fill in the blank: An argument is DEDUCTIVELY VALID if ________",
+        fullDef:"An argument is DEDUCTIVELY VALID if it has no counterexamples — that is, no possible situation in which all of the premises are true and the conclusion is false."
+      },
+      {
+        prompt:"Fill in the blank: An argument is SOUND if ________",
+        fullDef:"An argument is SOUND if its premises are all true and it is deductively valid."
+      },
+      {
+        prompt:"Fill in the blank: A kind of reasoning is MONOTONIC if ________",
+        fullDef:"A kind of reasoning is MONOTONIC if adding new premises will not make an argument that succeeds in providing the claimed support for its conclusion fail to do so."
+      },
+      {
+        prompt:"Fill in the blank: A kind of reasoning is NON-MONOTONIC if ________",
+        fullDef:"A kind of reasoning is NON-MONOTONIC if adding new premises could make an argument that succeeds in providing the claimed support for its conclusion fail to do so."
+      }
+    ]
+  },
+
+  week3: {
+    graded: [
+      {
+        type:"mc",
+        question:"What is a FALLACY?",
+        options:[
+          "A true statement that has been expressed in an unclear or misleading way.",
+          "A faulty argument or a faulty kind of argument.",
+          "An argument whose conclusion has been proven to be factually false.",
+          "A premise within an argument that directly contradicts another premise in the same argument."
+        ],
+        answer:1,
+        explanation:"A FALLACY is a faulty argument or a faulty kind of argument."
+      },
+      {
+        type:"mc",
+        question:"A person commits a FALLACY OF RELEVANCE if:",
+        options:[
+          "She uses ambiguous or vague language in her premises in order to mislead her audience.",
+          "She claims her premises provide absolute support for the conclusion when in fact they do not provide absolute support.",
+          "She supports her conclusion with premises that are not relevant to the truth of the conclusion.",
+          "She significantly overestimates the degree of inductive support her premises provide for her conclusion."
+        ],
+        answer:2,
+        explanation:"A FALLACY OF RELEVANCE occurs when a person supports her conclusion with premises that are not relevant to the truth of the conclusion."
+      },
+      {
+        type:"mc",
+        question:"A SEMANTIC FALLACY occurs when:",
+        options:[
+          "Every premise in the argument has independently been shown to be factually false.",
+          "An argument relies on words or phrases with ambiguous or vague meanings.",
+          "The conclusion of the argument does not logically follow from the premises provided.",
+          "The argument is structured in a way that has absolutely no possible counterexamples."
+        ],
+        answer:1,
+        explanation:"A SEMANTIC FALLACY occurs when an argument relies on words or phrases with ambiguous or vague meanings."
+      },
+      {
+        type:"mc",
+        question:"A person commits a DEDUCTIVE FALLACY if:",
+        options:[
+          "She uses inductive-style reasoning in a context that strictly requires deductive certainty.",
+          "She claims her premises would make the conclusion merely probable when in fact they provide absolute deductive support.",
+          "She claims that her premises would provide absolute support for the truth of the conclusion when in fact they would not provide absolute support.",
+          "She uses ambiguous or vague language in one or more of the premises of her argument."
+        ],
+        answer:2,
+        explanation:"A DEDUCTIVE FALLACY occurs when someone claims her premises provide absolute support for the conclusion when in fact they do not."
+      },
+      {
+        type:"mc",
+        question:"A person commits an INDUCTIVE FALLACY if:",
+        options:[
+          "She claims her premises provide absolute deductive support when they only make the conclusion somewhat likely.",
+          "She claims her premises provide a certain degree of inductive support when they actually provide only a significantly weaker degree of support.",
+          "She uses premises that have no relevance whatsoever to the truth or falsity of her conclusion.",
+          "She relies on ambiguous or vague language to make her argument seem stronger than it actually is."
+        ],
+        answer:1,
+        explanation:"An INDUCTIVE FALLACY occurs when someone overstates the inductive support her premises provide — claiming a certain level of support when the premises only provide significantly weaker support."
+      },
+      {
+        type:"fitb",
+        question:"A FALLACY is a faulty ________ or a faulty kind of argument.",
+        answers:["argument"],
+        explanation:"A FALLACY is a faulty argument or a faulty kind of argument."
+      },
+      {
+        type:"fitb",
+        question:"A person commits a ________ FALLACY if her argument relies on words or phrases with ambiguous or vague meanings.",
+        answers:["semantic"],
+        explanation:"A SEMANTIC FALLACY exploits ambiguous or vague language."
+      },
+      {
+        type:"fitb",
+        question:"A FALLACY OF ________ occurs when premises that are not relevant to the truth of the conclusion are used to support it.",
+        answers:["relevance"],
+        explanation:"A FALLACY OF RELEVANCE uses premises that are irrelevant to the truth of the conclusion."
+      },
+      {
+        type:"fitb",
+        question:"A person commits a DEDUCTIVE FALLACY if she claims that her premises would provide ________ support for the conclusion when in fact they would not.",
+        answers:["absolute"],
+        explanation:"A DEDUCTIVE FALLACY involves falsely claiming that the premises provide absolute support for the conclusion."
+      }
+    ],
+    selfCheck: [
+      {
+        prompt:"Fill in the blank: A FALLACY is ________",
+        fullDef:"A FALLACY is a faulty argument or a faulty kind of argument."
+      },
+      {
+        prompt:"Fill in the blank: A person commits a FALLACY OF RELEVANCE if ________",
+        fullDef:"A person commits a FALLACY OF RELEVANCE if she supports her conclusion with premises that are not relevant to the truth of the conclusion."
+      },
+      {
+        prompt:"Fill in the blank: A person commits a SEMANTIC FALLACY if ________",
+        fullDef:"A person commits a SEMANTIC FALLACY if her argument relies on words or phrases with ambiguous or vague meanings."
+      },
+      {
+        prompt:"Fill in the blank: A person commits a DEDUCTIVE FALLACY if ________",
+        fullDef:"A person commits a DEDUCTIVE FALLACY if she claims that the truth of her premises would provide absolute support for the truth of the conclusion when in fact the truth of the premises would not provide absolute support."
+      },
+      {
+        prompt:"Fill in the blank: A person commits an INDUCTIVE FALLACY if ________",
+        fullDef:"A person commits an INDUCTIVE FALLACY if she claims that the truth of her premises would provide a certain degree of support for the truth of the conclusion when in fact the truth of the premises would only provide some significantly weaker degree of support."
+      }
+    ]
+  },
+
+  week4: {
+    graded: [
+      {
+        type:"mc",
+        question:"A (particular) argument is DEDUCTIVELY VALID if and only if:",
+        options:[
+          "It has true premises and its conclusion has been confirmed to be true.",
+          "It is an instance of a valid argument form.",
+          "It has high inductive probability based on the available evidence.",
+          "Its conclusion is one that cannot possibly be false in any situation."
+        ],
+        answer:1,
+        explanation:"A particular argument is DEDUCTIVELY VALID iff it is an instance of a valid argument form."
+      },
+      {
+        type:"mc",
+        question:"An argument FORM is DEDUCTIVELY VALID if and only if:",
+        options:[
+          "Every single instance of that form happens to have a true conclusion.",
+          "There are no instances of that form in which all the premises are true and the conclusion false.",
+          "The form contains no vague or ambiguous terms in any of its components.",
+          "Every instance of the form is both valid and sound in the technical sense."
+        ],
+        answer:1,
+        explanation:"An argument form is DEDUCTIVELY VALID iff there are no instances of that form in which all the premises are true and the conclusion false."
+      },
+      {
+        type:"mc",
+        question:"A sentence is COMPOUND if and only if:",
+        options:[
+          "It contains more than ten words in total.",
+          "It independently makes multiple distinct claims at the same time.",
+          "It logically contains another complete sentence as a component.",
+          "It is itself a component of a longer and more complex formal proof."
+        ],
+        answer:2,
+        explanation:"A sentence is COMPOUND iff it logically contains another complete sentence as a component."
+      },
+      {
+        type:"mc",
+        question:"A sentence is SIMPLE if and only if:",
+        options:[
+          "It is easy for a typical reader to understand without additional context.",
+          "It consists of fewer than five words in its standard English formulation.",
+          "It is not compound — it does not logically contain another complete sentence as a component.",
+          "It contains exactly one noun phrase and one verb phrase and nothing more."
+        ],
+        answer:2,
+        explanation:"A sentence is SIMPLE iff it is not compound — it does not logically contain another complete sentence as a component."
+      },
+      {
+        type:"mc",
+        question:"A SENTENTIAL OPERATOR is:",
+        options:[
+          "A punctuation mark or word that connects two independent clauses using a comma splice.",
+          "An expression containing blanks such that, when the blanks are filled with complete sentences, the result is a complete sentence.",
+          "A special symbol used in formal logic proofs to separate premise lines from conclusion lines.",
+          "A logical rule that is used to derive new conclusions from earlier statements in a proof."
+        ],
+        answer:1,
+        explanation:"A SENTENTIAL OPERATOR is an expression containing blanks such that, when the blanks are filled with complete sentences, the result is a complete sentence."
+      },
+      {
+        type:"mc",
+        question:"A sentential operator is TRUTH-FUNCTIONAL if and only if:",
+        options:[
+          "It always and invariably produces a true compound sentence regardless of the inputs.",
+          "It can only be applied to simple sentences and not to compound sentences.",
+          "The truth or falsity of the compound sentence containing it is completely determined by the truth or falsity of its component sentences.",
+          "It is the kind of operator that appears exclusively in deductively valid argument forms."
+        ],
+        answer:2,
+        explanation:"A sentential operator is TRUTH-FUNCTIONAL iff the truth or falsity of the compound sentence is completely determined by the truth or falsity of its component sentences."
+      },
+      {
+        type:"mc",
+        question:"A COUNTEREXAMPLE to an argument FORM is:",
+        options:[
+          "A sentence within the argument that directly contradicts or conflicts with one of the premises.",
+          "An instance of that argument form where all the premises are true and the conclusion is false.",
+          "A separate argument that uses the same form but arrives at an opposite conclusion.",
+          "A possible world or scenario in which every sentence in the argument is uniformly true."
+        ],
+        answer:1,
+        explanation:"A COUNTEREXAMPLE to an argument form is an instance of that form where all the premises are true and the conclusion false."
+      },
+      {
+        type:"fitb",
+        question:"A sentence is ________ iff it logically contains another complete sentence as a component.",
+        answers:["compound"],
+        explanation:"A COMPOUND sentence logically contains another complete sentence as a component."
+      },
+      {
+        type:"fitb",
+        question:"A sentential operator is ________ iff the truth or falsity of the compound sentence is completely determined by the truth or falsity of its component sentences.",
+        answers:["truth-functional"],
+        explanation:"A TRUTH-FUNCTIONAL operator produces compound sentences whose truth values are fully determined by the truth values of their components."
+      },
+      {
+        type:"fitb",
+        question:"A sentence is ________ iff it is not compound.",
+        answers:["simple"],
+        explanation:"A SIMPLE sentence does not logically contain another complete sentence as a component."
+      },
+      {
+        type:"fitb",
+        question:"A SENTENTIAL OPERATOR is an expression containing blanks such that, when the blanks are filled with complete sentences, the result is a complete ________.",
+        answers:["sentence"],
+        explanation:"A sentential operator takes complete sentences as inputs and produces a complete sentence as output."
+      }
+    ],
+    selfCheck: [
+      {
+        prompt:"Fill in the blank: A sentence is COMPOUND iff ________",
+        fullDef:"A sentence is COMPOUND iff it logically contains another complete sentence as a component."
+      },
+      {
+        prompt:"Fill in the blank: A sentence is SIMPLE iff ________",
+        fullDef:"A sentence is SIMPLE iff it is not compound — that is, it does not logically contain another complete sentence as a component."
+      },
+      {
+        prompt:"Fill in the blank: A SENTENTIAL OPERATOR is ________",
+        fullDef:"A SENTENTIAL OPERATOR is an expression containing blanks such that, when the blanks are filled with complete sentences, the result is a complete sentence."
+      },
+      {
+        prompt:"Fill in the blank: A sentential operator is TRUTH-FUNCTIONAL iff ________",
+        fullDef:"A sentential operator is TRUTH-FUNCTIONAL iff the truth or falsity of a compound sentence containing that operator is completely determined by the truth or falsity of its component sentences."
+      }
+    ]
+  },
+
+  week5: { graded: [], selfCheck: [] },
+
+  week6: {
+    graded: [
+      {
+        type:"mc",
+        question:"A statement form is a TAUTOLOGY if and only if:",
+        options:[
+          "It is true in at least one row of its truth table but not necessarily all rows.",
+          "Every instance of that form is true — that is, it is true in every single row of its truth table.",
+          "Every instance of that form is false — that is, it is false in every single row of its truth table.",
+          "Some instances of that form are true while other instances of that same form are false."
+        ],
+        answer:1,
+        explanation:"A statement form is a TAUTOLOGY iff every instance is true — it is true in every row of its truth table."
+      },
+      {
+        type:"mc",
+        question:"A statement form is a CONTRADICTION if and only if:",
+        options:[
+          "Some instances of that form are true while other instances of that same form are false.",
+          "Every instance of that form is true — it is true in every single row of its truth table.",
+          "Every instance of that form is false — that is, it is false in every single row of its truth table.",
+          "It contains a negation operator applied to a tautology somewhere in its structure."
+        ],
+        answer:2,
+        explanation:"A statement form is a CONTRADICTION iff every instance is false — it is false in every row of its truth table."
+      },
+      {
+        type:"mc",
+        question:"A statement form is a CONTINGENCY if and only if:",
+        options:[
+          "It is true in every possible row of its truth table without exception.",
+          "It is false in every possible row of its truth table without exception.",
+          "Some instance of that form is true and some instance is false — it is true in at least one row and false in at least one row.",
+          "It contains a tautological subformula somewhere within its overall logical structure."
+        ],
+        answer:2,
+        explanation:"A statement form is a CONTINGENCY iff it is true in at least one row and false in at least one row of its truth table."
+      },
+      {
+        type:"mc",
+        question:"What is the key difference between a TAUTOLOGY and a CONTINGENCY?",
+        options:[
+          "A tautology is always false in every row, whereas a contingency is always true in every row.",
+          "A tautology is true in every row of its truth table, whereas a contingency is true in some rows and false in others.",
+          "A tautology has no truth table associated with it, whereas a contingency does have a truth table.",
+          "There is no meaningful difference between them — both terms refer to the same logical concept."
+        ],
+        answer:1,
+        explanation:"A TAUTOLOGY is true in every row of its truth table, while a CONTINGENCY is true in some rows and false in others."
+      },
+      {
+        type:"mc",
+        question:"Which of the following correctly describes a CONTRADICTION?",
+        options:[
+          "It is true in at least one possible instance or row of its truth table.",
+          "Its truth value varies and depends on the specific instance or assignment considered.",
+          "It is false in every single row of its truth table — it cannot possibly be true.",
+          "It is logically equivalent to a tautology under certain conditions or interpretations."
+        ],
+        answer:2,
+        explanation:"A CONTRADICTION is false in every row of its truth table — it cannot possibly be true."
+      },
+      {
+        type:"fitb",
+        question:"A statement form is a ________ iff every instance of that form is true (true in every row of its truth table).",
+        answers:["tautology"],
+        explanation:"A TAUTOLOGY is true in every row of its truth table."
+      },
+      {
+        type:"fitb",
+        question:"A statement form is a ________ iff every instance of that form is false (false in every row of its truth table).",
+        answers:["contradiction"],
+        explanation:"A CONTRADICTION is false in every row of its truth table."
+      },
+      {
+        type:"fitb",
+        question:"A statement form is a ________ iff some instance of that form is true and some is false.",
+        answers:["contingency"],
+        explanation:"A CONTINGENCY is neither a tautology nor a contradiction — true in some rows and false in others."
+      }
+    ],
+    selfCheck: [
+      {
+        prompt:"Fill in the blank: A statement form is a TAUTOLOGY iff ________",
+        fullDef:"A statement form is a TAUTOLOGY iff every instance of that form is true; that is, it is true in every row of its truth table."
+      },
+      {
+        prompt:"Fill in the blank: A statement form is a CONTRADICTION iff ________",
+        fullDef:"A statement form is a CONTRADICTION (or inconsistent) iff every instance of that form is false; that is, it is false in every row of its truth table."
+      },
+      {
+        prompt:"Fill in the blank: A statement form is a CONTINGENCY iff ________",
+        fullDef:"A statement form is a CONTINGENCY iff some instance of that form is true and some is false; that is, it is true in at least one row of its truth table and false in at least one row of its truth table."
+      }
+    ]
+  },
+
+  week7: {
+    graded: [
+      {
+        type:"mc",
+        question:"What is a PROOF in formal logic?",
+        options:[
+          "A truth table that systematically displays all possible truth value combinations for a given formula.",
+          "A sequence of statements, each of which is either a premise or a statement obtained from earlier statements by applying a rule of inference.",
+          "A counterexample that decisively disproves a particular argument form by showing it has a false conclusion.",
+          "A complete set of premises that are jointly sufficient to guarantee the truth of a given conclusion."
+        ],
+        answer:1,
+        explanation:"A PROOF is a sequence of statements, each of which is either a premise or a statement obtained from one or more earlier statements by applying one of the rules of inference."
+      },
+      {
+        type:"mc",
+        question:"In a PROOF, every statement is either:",
+        options:[
+          "Determinately true or determinately false in all possible worlds.",
+          "A premise or a statement derived from one or more earlier statements by applying a rule of inference.",
+          "Deductively valid on its own or inductively strong relative to all earlier statements.",
+          "A tautology by itself or a logical contradiction that has been negated."
+        ],
+        answer:1,
+        explanation:"In a PROOF, every statement is either a premise or derived from one or more earlier statements by applying a rule of inference."
+      },
+      {
+        type:"mc",
+        question:"Which of the following best describes the role of RULES OF INFERENCE in a proof?",
+        options:[
+          "They are the premises that are assumed to be true without justification at the very start of the proof.",
+          "They are used to derive new statements from one or more earlier statements already in the proof sequence.",
+          "They determine once and for all whether the entire argument is inductive or deductive in character.",
+          "They assign specific truth values to the simple sentences that appear in the proof."
+        ],
+        answer:1,
+        explanation:"Rules of inference allow you to derive new statements from one or more earlier statements in the proof sequence."
+      },
+      {
+        type:"fitb",
+        question:"A PROOF is a sequence of statements, each of which is either a premise or a statement obtained from one or more earlier statements by applying one of the ________ of inference.",
+        answers:["rules"],
+        explanation:"Each step in a proof is either a premise or derived from earlier statements using rules of inference."
+      },
+      {
+        type:"fitb",
+        question:"A ________ is a sequence of statements where each statement is either a premise or follows from earlier statements by a rule of inference.",
+        answers:["proof"],
+        explanation:"A PROOF is a formal sequence of statements establishing a conclusion from premises using rules of inference."
+      }
+    ],
+    selfCheck: [
+      {
+        prompt:"Fill in the blank: A PROOF is ________",
+        fullDef:"A PROOF is a sequence of statements, each of which is either a premise or a statement that is obtained from one or more earlier statements by applying one of the rules of inference."
+      }
+    ]
+  },
+
+  week8: { graded: [], selfCheck: [] },
+
+  weeks910: {
+    graded: [
+      {
+        type:"mc",
+        question:"Two statement forms are LOGICALLY EQUIVALENT if:",
+        options:[
+          "They contain exactly the same number of propositional variables and connectives.",
+          "Their truth-values agree for all instances — their truth tables agree in every single row.",
+          "One of them can be derived from the other in a single application of a rule of inference.",
+          "They are both tautologies that are always true regardless of any truth value assignments."
+        ],
+        answer:1,
+        explanation:"Two statement forms are LOGICALLY EQUIVALENT if their truth-values agree for all instances — their truth tables agree in every row."
+      },
+      {
+        type:"mc",
+        question:"A SUBFORMULA is:",
+        options:[
+          "A premise within an argument that provides direct support for the main conclusion.",
+          "An informal paraphrase or summary of an argument written in everyday natural language.",
+          "A grammatically correct sentence that is a part of another grammatically correct sentence.",
+          "A truth-functional operator that is applied to a simple sentence to form a compound one."
+        ],
+        answer:2,
+        explanation:"A SUBFORMULA is a grammatically correct sentence that is a part of another grammatically correct sentence."
+      },
+      {
+        type:"mc",
+        question:"Which of the following must be true if two statement forms are LOGICALLY EQUIVALENT?",
+        options:[
+          "Both of the statement forms must themselves be tautologies.",
+          "The two statement forms must share all of the same sentential operators.",
+          "Their truth tables agree in every single row — they always have exactly the same truth value.",
+          "One of the statement forms must be a subformula of the other statement form."
+        ],
+        answer:2,
+        explanation:"Two statement forms are logically equivalent if their truth tables agree in every row — they always have the same truth value for every possible assignment."
+      },
+      {
+        type:"mc",
+        question:"Which of the following is an example of a SUBFORMULA of the sentence \"(P ∧ Q) → R\"?",
+        options:[
+          "Only \"R\" alone counts as a subformula, since it is the shortest component.",
+          "\"P ∧ Q\" is a subformula because it is a grammatically correct sentence within the larger one.",
+          "Both \"(P ∧ Q) → R\" itself and \"P ∧ Q\" are subformulas of \"(P ∧ Q) → R\".",
+          "There are no subformulas because a subformula must be shorter than two symbols in length."
+        ],
+        answer:2,
+        explanation:"Both \"(P ∧ Q) → R\" (the whole sentence) and \"P ∧ Q\" (a component) qualify as subformulas — a SUBFORMULA is any grammatically correct sentence that is part of another grammatically correct sentence, including the whole sentence itself."
+      },
+      {
+        type:"fitb",
+        question:"Two statement forms are LOGICALLY ________ if their truth tables agree in every row.",
+        answers:["equivalent"],
+        explanation:"Two statement forms are LOGICALLY EQUIVALENT if their truth-values agree for all instances."
+      },
+      {
+        type:"fitb",
+        question:"A ________ is a grammatically correct sentence that is a part of another grammatically correct sentence.",
+        answers:["subformula"],
+        explanation:"A SUBFORMULA is a grammatically correct sentence that appears within a larger grammatically correct sentence."
+      }
+    ],
+    selfCheck: [
+      {
+        prompt:"Fill in the blank: Two statement forms are LOGICALLY EQUIVALENT if ________",
+        fullDef:"Two statement forms are LOGICALLY EQUIVALENT if their truth-values agree for all instances; that is, their truth tables agree in every row."
+      },
+      {
+        prompt:"Fill in the blank: A SUBFORMULA is ________",
+        fullDef:"A SUBFORMULA is a grammatically correct sentence that is a part of another grammatically correct sentence."
+      }
+    ]
+  }
+};
+
+// ============================================================
+// QUIZ CONFIG
+// ============================================================
+const quizConfig = {
+  week1:    ["week1"],
+  week2:    ["week2"],
+  week3:    ["week3"],
+  unit1:    ["week1","week2","week3"],
+  week4:    ["week4"],
+  week5:    ["week5"],
+  week6:    ["week6"],
+  unit2:    ["week4","week5","week6"],
+  week7:    ["week7"],
+  week8:    ["week8"],
+  weeks910: ["weeks910"],
+  final:    ["week7","week8","weeks910"]
+};
+
+// ============================================================
+// STATE
+// ============================================================
+let gradedQuestions  = [];
+let selfCheckQuestions = [];
+let currentIndex     = 0;
+let score            = 0;
+let answered         = false;
+let phase            = "graded"; // "graded" | "selfcheck"
+let missedQuestions  = [];
+let isRedoMode       = false;
+let currentQuizKey   = "";
+
+// ============================================================
+// UTILITIES
+// ============================================================
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+function show(id) { document.getElementById(id).classList.remove("hidden"); }
+function hide(id) { document.getElementById(id).classList.add("hidden"); }
+
+// ============================================================
+// START QUIZ
+// ============================================================
+function startQuiz() {
+  const sel = document.getElementById("quiz-select").value;
+  if (!sel) { alert("Please select a quiz first!"); return; }
+  currentQuizKey = sel;
+  launchQuiz(sel, false);
+}
+
+function launchQuiz(sel, redoMode) {
+  const weeks = quizConfig[sel];
+  let allGraded = [];
+  let allSelfCheck = [];
+
+  weeks.forEach(w => {
+    const bank = questionBank[w];
+    if (bank) {
+      if (bank.graded)    allGraded    = allGraded.concat(bank.graded);
+      if (bank.selfCheck) allSelfCheck = allSelfCheck.concat(bank.selfCheck);
+    }
+  });
+
+  if (allGraded.length === 0 && allSelfCheck.length === 0) {
+    alert("There are no vocabulary definitions assigned for this week. Please select another quiz.");
+    return;
+  }
+
+  isRedoMode       = redoMode;
+  gradedQuestions  = shuffle(allGraded);
+  selfCheckQuestions = shuffle(allSelfCheck);
+  currentIndex     = 0;
+  score            = 0;
+  answered         = false;
+  missedQuestions  = [];
+  phase            = "graded";
+
+  hide("menu-section");
+  hide("results-section");
+  show("quiz-section");
+
+  setPhaseUI("graded");
+
+  if (gradedQuestions.length === 0) {
+    // skip straight to self-check
+    phase = "selfcheck";
+    setPhaseUI("selfcheck");
+  }
+
+  renderQuestion();
+}
+
+// ============================================================
+// REDO MISSED
+// ============================================================
+function redoMissed() {
+  if (missedQuestions.length === 0) return;
+  gradedQuestions  = shuffle(missedQuestions);
+  selfCheckQuestions = [];
+  currentIndex     = 0;
+  score            = 0;
+  answered         = false;
+  missedQuestions  = [];
+  phase            = "graded";
+  isRedoMode       = true;
+
+  hide("results-section");
+  show("quiz-section");
+  setPhaseUI("graded");
+  renderQuestion();
+}
+
+// ============================================================
+// PHASE UI
+// ============================================================
+function setPhaseUI(p) {
+  const banner = document.getElementById("phase-banner");
+  const bar    = document.getElementById("progress-bar");
+  if (p === "graded") {
+    banner.textContent = "📝 Graded Questions";
+    banner.className   = "phase-banner phase-graded";
+    bar.className      = "progress-bar graded";
+  } else {
+    banner.textContent = "✏️ Self-Check: Complete the Definition (Ungraded)";
+    banner.className   = "phase-banner phase-selfcheck";
+    bar.className      = "progress-bar selfcheck";
+  }
+}
+
+// ============================================================
+// RENDER QUESTION
+// ============================================================
+function renderQuestion() {
+  answered = false;
+  document.getElementById("next-btn").style.display = "none";
+
+  const card = document.getElementById("question-card");
+  card.className = "question-card";
+
+  if (phase === "graded") {
+    const total = gradedQuestions.length;
+    const pct   = (currentIndex / total) * 100;
+    document.getElementById("progress-bar").style.width = pct + "%";
+    document.getElementById("progress-text").textContent =
+      "Question " + (currentIndex + 1) + " of " + total;
+
+    const q = gradedQuestions[currentIndex];
+    if (q.type === "mc") renderMC(q, card);
+    else                  renderFITB(q, card);
+
+  } else {
+    const total = selfCheckQuestions.length;
+    const pct   = (currentIndex / total) * 100;
+    document.getElementById("progress-bar").style.width = pct + "%";
+    document.getElementById("progress-text").textContent =
+      "Self-Check " + (currentIndex + 1) + " of " + total;
+
+    const q = selfCheckQuestions[currentIndex];
+    renderSelfCheck(q, card);
+  }
+}
+
+// ============================================================
+// RENDER MC
+// ============================================================
+function renderMC(q, card) {
+  const opts    = q.options.map((text, i) => ({ text, isCorrect: i === q.answer }));
+  const shuffled = shuffle(opts);
+  const optHtml = shuffled.map(o =>
+    `<li><button class="option-btn" onclick="pickOption(this,${o.isCorrect})" data-correct="${o.isCorrect}">${o.text}</button></li>`
+  ).join("");
+
+  card.innerHTML = `
+    <span class="badge badge-mc">Multiple Choice</span>
+    <div class="question-text">${q.question}</div>
+    <ul class="options-list">${optHtml}</ul>
+    <div class="feedback" id="feedback"></div>`;
+}
+
+// ============================================================
+// RENDER FITB
+// ============================================================
+function renderFITB(q, card) {
+  card.innerHTML = `
+    <span class="badge badge-fitb">Fill in the Blank</span>
+    <div class="question-text">${q.question}</div>
+    <input type="text" class="fitb-input" id="fitb-input"
+      placeholder="Type your answer here..."
+      onkeydown="if(event.key==='Enter') checkFitb()" autocomplete="off" />
+    <button class="btn btn-primary" id="submit-btn" onclick="checkFitb()">Submit</button>
+    <div class="feedback" id="feedback"></div>`;
+  setTimeout(() => { const el = document.getElementById("fitb-input"); if (el) el.focus(); }, 50);
+}
+
+// ============================================================
+// RENDER SELF-CHECK
+// ============================================================
+function renderSelfCheck(q, card) {
+  card.className = "question-card selfcheck-card";
+  card.innerHTML = `
+    <span class="badge badge-selfcheck">✏️ Self-Check (Ungraded)</span>
+    <div class="question-text">${q.prompt}</div>
+    <textarea class="selfcheck-textarea" id="sc-input" placeholder="Write your answer here..."></textarea>
+    <button class="btn btn-warning" id="sc-submit-btn" onclick="checkSelfCheck()">Submit &amp; Check</button>
+    <div class="feedback" id="feedback"></div>`;
+  setTimeout(() => { const el = document.getElementById("sc-input"); if (el) el.focus(); }, 50);
+}
+
+// ============================================================
+// MULTIPLE CHOICE HANDLER
+// ============================================================
+function pickOption(btn, isCorrect) {
+  if (answered) return;
+  answered = true;
+
+  document.querySelectorAll(".option-btn").forEach(b => {
+    b.disabled = true;
+    if (b.dataset.correct === "true") b.classList.add("reveal");
+  });
+
+  const q  = gradedQuestions[currentIndex];
+  const fb = document.getElementById("feedback");
+
+  if (isCorrect) {
+    btn.classList.remove("reveal");
+    btn.classList.add("correct");
+    score++;
+    fb.className   = "feedback correct show";
+    fb.textContent = "✅ Correct! " + q.explanation;
+  } else {
+    btn.classList.add("incorrect");
+    fb.className   = "feedback incorrect show";
+    fb.textContent = "❌ Incorrect. " + q.explanation;
+    missedQuestions.push(q);
+  }
+
+  document.getElementById("next-btn").style.display = "inline-block";
+}
+
+// ============================================================
+// FILL-IN-THE-BLANK HANDLER
+// ============================================================
+function checkFitb() {
+  if (answered) return;
+  const input     = document.getElementById("fitb-input");
+  const submitBtn = document.getElementById("submit-btn");
+  const fb        = document.getElementById("feedback");
+  const q         = gradedQuestions[currentIndex];
+  const val       = input.value.trim().toLowerCase();
+
+  if (!val) { input.focus(); return; }
+
+  answered       = true;
+  input.disabled = true;
+  submitBtn.disabled = true;
+
+  const correct = q.answers.some(a => a.toLowerCase() === val);
+
+  if (correct) {
+    input.classList.add("correct");
+    score++;
+    fb.className   = "feedback correct show";
+    fb.textContent = "✅ Correct! " + q.explanation;
+  } else {
+    input.classList.add("incorrect");
+    fb.className   = "feedback incorrect show";
+    fb.textContent = `❌ Incorrect. The correct answer is: "${q.answers[0]}". ${q.explanation}`;
+    missedQuestions.push(q);
+  }
+
+  document.getElementById("next-btn").style.display = "inline-block";
+}
+
+// ============================================================
+// SELF-CHECK HANDLER
+// ============================================================
+function checkSelfCheck() {
+  const input     = document.getElementById("sc-input");
+  const submitBtn = document.getElementById("sc-submit-btn");
+  const fb        = document.getElementById("feedback");
+  const q         = selfCheckQuestions[currentIndex];
+
+  submitBtn.disabled = true;
+  input.disabled     = true;
+
+  fb.className = "feedback selfcheck-fb show";
+  fb.innerHTML = `<strong>Check for yourself:</strong> did you fill in the blank correctly?<br><br>
+The correct answer is: <em>"${q.fullDef}"</em><br><br>
+On your quiz, you won't need to produce this exact definition word-for-word, but you will need to give a definition that means the same thing as this one. Does your definition mean the same thing as this definition?`;
+
+  document.getElementById("next-btn").style.display = "inline-block";
+}
+
+// ============================================================
+// NEXT QUESTION
+// ============================================================
+function nextQuestion() {
+  currentIndex++;
+
+  if (phase === "graded") {
+    if (currentIndex >= gradedQuestions.length) {
+      // Done with graded; go to self-check (unless redo mode or no self-check)
+      if (isRedoMode || selfCheckQuestions.length === 0) {
+        showResults();
+      } else {
+        phase        = "selfcheck";
+        currentIndex = 0;
+        setPhaseUI("selfcheck");
+        renderQuestion();
+      }
+    } else {
+      renderQuestion();
+    }
+  } else {
+    if (currentIndex >= selfCheckQuestions.length) {
+      showResults();
+    } else {
+      renderQuestion();
+    }
+  }
+}
+
+// ============================================================
+// RESULTS
+// ============================================================
+function showResults() {
+  hide("quiz-section");
+  show("results-section");
+
+  const total = gradedQuestions.length;
+  const pct   = total > 0 ? Math.round((score / total) * 100) : 0;
+
+  document.getElementById("score-display").textContent = score + " / " + total;
+  document.getElementById("score-pct").textContent     = pct + "% correct";
+
+  let trophy, msg;
+  if (total === 0) {
+    trophy = "📖"; msg = "No graded questions in this selection. Great job completing the self-check!";
+  } else if (pct === 100) {
+    trophy = "🏆"; msg = "Perfect score! Outstanding work — you have completely mastered this material!";
+  } else if (pct >= 80) {
+    trophy = "🎉"; msg = "Great job! You have a strong grasp of these concepts. Review any missed questions and you'll be exam-ready!";
+  } else if (pct >= 60) {
+    trophy = "📚"; msg = "Good effort! You're on the right track — a bit more review of the definitions you missed will get you there!";
+  } else {
+    trophy = "💪"; msg = "Keep studying! Go back and carefully review the definitions, then try again. You've got this!";
+  }
+
+  document.getElementById("trophy").textContent    = trophy;
+  document.getElementById("results-msg").textContent = msg;
+
+  const missedDiv  = document.getElementById("missed-msg");
+  const redoBtn    = document.getElementById("redo-missed-btn");
+
+  if (missedQuestions.length > 0 && !isRedoMode) {
+    missedDiv.textContent = `You missed ${missedQuestions.length} question${missedQuestions.length > 1 ? "s" : ""}. Would you like to redo just the questions you got wrong?`;
+    show("missed-msg");
+    show("redo-missed-btn");
+  } else if (missedQuestions.length > 0 && isRedoMode) {
+    missedDiv.textContent = `You still missed ${missedQuestions.length} question${missedQuestions.length > 1 ? "s" : ""}. Keep reviewing and try again!`;
+    show("missed-msg");
+    show("redo-missed-btn");
+  } else {
+    hide("missed-msg");
+    hide("redo-missed-btn");
+  }
+}
+
+// ============================================================
+// RETRY / MENU
+// ============================================================
+function retryQuiz() {
+  hide("results-section");
+  const sel = currentQuizKey || document.getElementById("quiz-select").value;
+  if (sel) launchQuiz(sel, false);
+  else     goToMenu();
+}
+
+function goToMenu() {
+  hide("results-section");
+  hide("quiz-section");
+  show("menu-section");
+}
+</script>
+</body>
+</html>
